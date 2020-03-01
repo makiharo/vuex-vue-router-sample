@@ -1,32 +1,22 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Hoge</router-link> |
+      <router-link to="/piyo">Piyo</router-link>
     </div>
-    <router-view/>
+    <span v-show="is_loading() == true">loading...</span>
+    <router-view v-show="is_loading() == false" />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+export default {
+  methods: {
+    is_loading: function() {
+      console.log("-------------------- App.vue is_loading");
+      console.log(this.$store.state.is_loading);
+      return this.$store.state.is_loading;
     }
-  }
-}
-</style>
+  },
+};
+</script>
