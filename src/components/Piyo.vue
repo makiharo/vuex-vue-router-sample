@@ -20,7 +20,7 @@ export default {
 
   async beforeRouteEnter(to, from, next) {
     await store.dispatch("fetch");
-    console.log("------------ created 前だよー");
+    console.log("------------ created 前に処理をかける");
     next();
   }
 }
