@@ -4,17 +4,21 @@ const vuexModules = {
   namespaced: true,
   state: {
     message: "",
-    isLoading: true
+    isLoading: true,
+    isRouteWaiting: true
   },
   mutations: {
     setMessage(state, message) {
       state.message = message;
     },
-    setIsLoading(state, setIsLoading) {
+    setIsLoading(state, isLoading) {
       console.log("setIsLoadingで状態変化");
-      console.log(setIsLoading);
-      state.isLoading = setIsLoading;
-    }
+      console.log(isLoading);
+      state.isLoading = isLoading;
+    },
+    setRouteWaiting(state, isRouteWaiting) {
+      state.isRouteWaiting = isRouteWaiting;
+    },
   },
   actions: {
     async fetch({ commit }) {
