@@ -31,6 +31,18 @@ const router = new VueRouter({
 // vuexのstoreを利用する
 // ここをayncすること共通処理は噛ますことができる
 router.beforeEach(async (to, from, next) => {
+  // metaでauth処理するかどうかを判断できる
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // some()メソッドは、
+    // recordで、to.matchedの配列を各要素として扱う
+    // routeの設定のmetaで「requiresAut: true」のように定義されていて
+    // trueとなる要素があれば、trueを返す
+    //
+    // some()を利用する理由は、
+    // 上位のパスにrequire sAuth: trueを指定されていれば
+    // 全ての子ルートは認証確認の対象となる。
+  }
+
   // 非同期処理の開始のお知らせ
   store.commit("auth/setRouteWaiting", true);
   // 非同期処理
